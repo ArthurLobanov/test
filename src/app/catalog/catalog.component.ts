@@ -30,7 +30,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   constructor(private catalogService: CatalogService,
               private route: ActivatedRoute) {
+  }
 
+  ngOnInit(): void {
     this.filtersSubscription = this.catalogService.filters.subscribe(filters => {
       this.filters = filters;
       this.loadAssets(true);
@@ -52,9 +54,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {
-  }
-
   ngOnDestroy(): void {
     this.filtersSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
@@ -62,6 +61,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   loadAssets(reload?: boolean) {
+    if (reload) {
+      window.scroll(0, 0);
+    }
     this.catalogService.getAssets(this.filters, this.sortBy, {
         indexFrom: reload ? 0 : this.assets.length,
         count: 16
