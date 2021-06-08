@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'promo-republic';
+
+  log($event: number) {
+    console.log($event, 'used');
+  }
 }

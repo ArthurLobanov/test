@@ -1,0 +1,42 @@
+<div class="asset">
+  <div class="bgWrapper">
+    <img [src]="asset.previewImage"
+         default="/assets/img/imgError.png"
+         alt="preview"
+         class="previewImg">
+
+    <div class="hoverLayer">
+      <div class="bookmark" [ngClass]="{inBookmarks: inBookmarkFlag}" (click)="toggleBookmark()">
+        <img src="/assets/img/icons/bookmarkInactive.svg" alt="">
+        <img src="/assets/img/icons/bookmarkActive.svg" alt="" class="active">
+      </div>
+
+      <div class="bottom">
+        <div class="usageInfo">
+          <div>{{asset.usedTotalCount}}</div>
+          <div>Used (total)</div>
+        </div>
+
+        <button *ngIf="asset.type != assetTypes.PDF" class="btn btnUse" (click)="use()">use</button>
+        <a *ngIf="asset.type === assetTypes.PDF" [href]="asset.originalFileSrc" class="btn btnDownload" target="_blank">download</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+    <div class="title"><img src="assets/img/icons/{{icon}}" alt=""><span>{{asset.title}}</span></div>
+
+    <app-tags [tags]="asset.tags" *ngIf="asset.tags && asset.tags.length"></app-tags>
+
+    <div class="description" *ngIf="asset.description">{{asset.description}}</div>
+  </div>
+
+  <a class="externalLink" *ngIf="asset.type === assetTypes.ARTICLE && asset.externalLink" [href]="asset.externalLink.href"
+     target="_blank">
+    <img src="/assets/img/icons/link.svg" alt="">
+    <div>
+      <span>{{asset.externalLink.title}}</span>
+      <span>{{asset.externalLink.href}}</span>
+    </div>
+  </a>
+</div>

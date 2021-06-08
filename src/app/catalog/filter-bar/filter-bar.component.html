@@ -1,0 +1,11 @@
+<aside id="nav_bar">
+  <p id="nav_bar_title">Asset type</p>
+  <form action="">
+    <label class="checkbox" *ngFor="let filter of assetFilters">
+      <input type="checkbox" (change)="updateFilters()" [(ngModel)]="filter.checked" [name]="filter.name | lowercase">
+      <span class="checkmark"></span>
+      <img src="/assets/img/icons/{{assetIcons.get(filter.type)}}" alt="" class="icon">
+      {{filter.name | titlecase}}
+    </label>
+  </form>
+</aside>

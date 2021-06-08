@@ -1,0 +1,28 @@
+<div class="tagsWrapper">
+
+  <ul class="showedTags" #showedTagsEl>
+    <li class="tag trueTag"
+        *ngFor="let tag of showedTags">
+      {{tag}}
+    </li>
+
+    <li #hiddenTagsBtn class="tag overSizeBtn"
+        *ngIf="hiddenTags.length"
+        (click)="this.openHiddenTagsFlag = true;">
+      +{{hiddenTags.length}}
+    </li>
+  </ul>
+
+  <ul class="hiddenTags"
+      *ngIf="hiddenTags.length && openHiddenTagsFlag"
+      (clickOutside)="this.openHiddenTagsFlag = false"
+      [exclude]="[hiddenTagsBtnElRef]">
+    <li class="tag"
+        *ngFor="let tag of hiddenTags">
+      {{tag}}
+    </li>
+  </ul>
+
+</div>
+
+

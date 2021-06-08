@@ -1,0 +1,15 @@
+<div class="container">
+  <div id="content">
+    <app-filter-bar></app-filter-bar>
+    <app-infinite-scroll
+      (scrolled)="loadAssets()"
+    >
+      <ul class="catalog">
+        <li *ngFor="let item of assets">
+          <app-asset [asset]="item"></app-asset>
+        </li>
+      </ul>
+    </app-infinite-scroll>
+  </div>
+</div>
+
